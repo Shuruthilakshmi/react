@@ -1,0 +1,71 @@
+header{
+  background:blue;
+  padding:0;
+  padding: 20px;
+  text-align: center;
+  
+}
+
+
+header{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  background-color: #2e8b57;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Main Banner */
+.banner {
+  background-image: brown;
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+/* Sections */
+.section {
+  padding: 50px;
+  text-align: center;
+}
+
+.services, .gallery {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.service-item, .gallery-item {
+  width: 30%;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+/* Contact */
+.contact {
+  background-color: #f8f8f8;
+  padding: 40px;
+}
+
+/* Footer */
+footer {
+  background-color: #2e8b57;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
