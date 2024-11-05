@@ -27,24 +27,6 @@
             padding: 2em;
         }
 
-        /* Navigation Bar Styles */
-        nav {
-            background-color: #007BFF; /* Change to your desired color */
-            padding: 1em;
-            text-align: center;
-        }
-
-        nav a {
-            color: white; /* Link color */
-            text-decoration: none; /* No underline */
-            margin: 0 15px; /* Space between links */
-            font-weight: bold; /* Bold text */
-        }
-
-        nav a:hover {
-            text-decoration: underline; /* Underline on hover */
-        }
-
         /* Banner Section with Background Image */
         .banner {
             text-align: center;
@@ -61,7 +43,13 @@
             text-align: center;
         }
 
-        .services, .gallery, .contact {
+        .services h2, .gallery h2 {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .services-content, .gallery-content {
             display: flex;
             justify-content: center;
             gap: 1em;
@@ -75,6 +63,7 @@
             background-color: #f0f4c3;
             border-radius: 8px;
             margin: 1em;
+            text-align: center;
         }
 
         .gallery-item img {
@@ -98,70 +87,51 @@
     <p>Your dream vacation awaits!</p>
 </header>
 
-<!-- Navigation Bar -->
-<nav>
-    <a href="#home">Home</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-</nav>
-
 <!-- Banner -->
-<section class="banner" id="home">
+<section class="banner">
     <div>Welcome to NSV</div>
 </section>
 
 <!-- Services Section -->
-<section class="section services" id="services">
+<section class="section services">
     <h2>Our Services</h2>
-    <div class="service-item">
-        <h3>Luxury Suites</h3>
-        <p>Enjoy beachfront views from our luxurious suites.</p>
-    </div>
-    <div class="service-item">
-        <h3>Spa & Wellness</h3>
-        <p>Relax and rejuvenate with our world-class spa facilities.</p>
-    </div>
-    <div class="service-item">
-        <h3>Adventure Activities</h3>
-        <p>Dive into adventure with our snorkeling, surfing, and more.</p>
+    <div class="services-content">
+        <div class="service-item">
+            <h3>Luxury Suites</h3>
+            <p>Enjoy beachfront views from our luxurious suites.</p>
+        </div>
+        <div class="service-item">
+            <h3>Spa & Wellness</h3>
+            <p>Relax and rejuvenate with our world-class spa facilities.</p>
+        </div>
+        <div class="service-item">
+            <h3>Adventure Activities</h3>
+            <p>Dive into adventure with our snorkeling, surfing, and more.</p>
+        </div>
     </div>
 </section>
 
 <!-- Gallery Section -->
-<section class="section gallery" id="gallery">
+<section class="section gallery">
     <h2>Gallery</h2>
-    
-    <div class="gallery-item">
-        <img src="./room-3.jpeg" alt="Beach Room">
-        <h3>Beach View Room</h3>
-        <p>Experience stunning views of the ocean from our Beach View Room, complete with modern amenities and a private balcony.</p>
-    </div>
-    <div class="gallery-item">
-        <img src="./room-1.jpeg" alt="Spa Room">
-        <h3>Spa Suite</h3>
-        <p>Relax in our Spa Suite, featuring luxurious furnishings and a soothing ambiance for your ultimate relaxation.</p>
-    </div>
-    <div class="gallery-item">
-        <img src="./room-2.jpeg" alt="Luxury Suite">
-        <h3>Luxury Suite</h3>
-        <p>Indulge in our Luxury Suite, designed with elegance and comfort, providing the perfect getaway for couples.</p>
+    <div class="gallery-content">
+        <div class="gallery-item">
+            <img src="./room-3.jpeg" alt="Beach">
+            <p>Our beautiful beachfront room offers a panoramic view of the ocean.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="./room-1.jpeg" alt="Spa">
+            <p>Relax in our serene spa, designed for ultimate relaxation.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="./room-2.jpeg" alt="Suite">
+            <p>Our luxurious suite, complete with modern amenities.</p>
+        </div>
     </div>
 </section>
 
 <!-- Contact Section -->
-<section class="section contact" id="contact">
+<section class="section contact">
     <h2>Contact Us</h2>
     <p>Email: info@nsvbeachresort.com</p>
-    <p>Phone: +1 (555) 123-4567</p>
-</section>
-
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 NSV Beach Resort. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
-</body>
-</html>
+    <p>Phone: +1 (555) 123-4567</p
