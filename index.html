@@ -1,88 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<title>Loan Calculator</title>
-	<style>
-		body {
-			background-color: yellow;
-			font-family: 'Trebuchet MS';
-		}
-		
-		h1 {
-			font-size: 35px;
-			margin-bottom: 20px;
-		}
-		
-		.calculator {
-			width: 400px;
-			height: 450px;
-			background-color: black;
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translateX(-50%) translateY(-50%);
-			padding: 20px;
-			border-radius: 50px;
-			color: white;
-			text-align: center;
-		}
-		
-		input {
-			padding: 7px;
-			width: 70%;
-			margin-top: 10px;
-			margin-bottom: 20px;
-			border-radius: 5px;
-			border: none;
-		}
-		
-		h2 {
-			margin-top: 20px;
-			font-size: 20px;
-			color: lightgreen;
-		}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: yellow;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .output {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
 </head>
-
 <body>
-	<div class="calculator">
-		<h1>Loan Calculator</h1>
-		<p>Amount (₹):</p>
-		<input id="amount" type="number" onchange="Calculate()" placeholder="Enter loan amount">
+  <div class="container">
+    <h2>Loan Calculator</h2>
+    <label for="amount">Loan Amount ($):</label>
+    <input type="number" id="amount" placeholder="Enter loan amount" />
 
-		<p>Interest Rate (%):</p>
-		<input id="rate" type="number" onchange="Calculate()" placeholder="Enter annual interest rate">
+    <label for="interest">Annual Interest Rate (%):</label>
+    <input type="number" id="interest" placeholder="Enter interest rate" />
 
-		<p>Months to Pay:</p>
-		<input id="months" type="number" onchange="Calculate()" placeholder="Enter loan tenure (in months)">
+    <label for="years">Loan Term (Years):</label>
+    <input type="number" id="years" placeholder="Enter loan term in years" />
 
-		<h2 id="total">EMI: ₹0.00</h2>
-	</div>
+    <button onclick="calculateLoan()">Calculate</button>
 
-	<script>
-		function Calculate() {
-			// Extract values from input fields
-			const amount = parseFloat(document.querySelector("#amount").value);
-			const rate = parseFloat(document.querySelector("#rate").value);
-			const months = parseInt(document.querySelector("#months").value);
+    <div class="output" id="output"></div>
+  </div>
 
-			// Check if inputs are valid
-			if (isNaN(amount) || isNaN(rate) || isNaN(months) || amount <= 0 || rate <= 0 || months <= 0) {
-				document.querySelector("#total").innerHTML = "EMI: ₹0.00";
-				return;
-			}
+  <script>
+    function calculateLoan() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const interest = parseFloat(document.getElementById('interest').value) / 100 / 12;
+      const years = parseInt(document.getElementById('years').value);
+      const payments = years * 12;
 
-			// Calculate monthly interest rate
-			const interest = (amount * (rate * 0.01)) / months;
+      if (isNaN(amount) || isNaN(interest) || isNaN(years)) {
+        document.getElementById('output').innerHTML = 'Please enter valid numbers.';
+        return;
+      }
 
-			// Calculate total EMI per month
-			const total = ((amount / months) + interest).toFixed(2);
+      const x = Math.pow(1 + interest, payments);
+      const monthly = (amount * x * interest) / (x - 1);
 
-			// Update the result in the output section
-			document.querySelector("#total").innerHTML = `EMI: ₹${total}`;
-		}
-	</script>
+      if (isFinite(monthly)) {
+        document.getElementById('output').innerHTML = `
+          Monthly Payment: $${monthly.toFixed(2)}<br>
+          Total Payment: $${(monthly * payments).toFixed(2)}<br>
+          Total Interest: $${(monthly * payments - amount).toFixed(2)}
+        `;
+      } else {
+        document.getElementById('output').innerHTML = 'Error in calculation. Check your input values.';
+      }
+    }
+  </script>
 </body>
-
 </html>
