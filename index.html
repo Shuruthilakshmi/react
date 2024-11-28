@@ -1,174 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beach Resort - NSV Getaway</title>
-
-    <!-- Basic CSS Reset and Styling -->
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        header {
-            text-align: center;
-            background-color: #e3f2fd;
-            padding: 2em;
-        }
-
-        /* Navigation Bar Styles */
-        nav {
-            background-color: #1976d2;
-            padding: 1em;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2em;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* Banner Section with Background Image */
-        .banner {
-            text-align: center;
-            background-image: url('./room-2.jpeg'); /* Replace with your image file */
-            background-size: cover;
-            background-position: center;
-            color: #fff; /* Ensure text stands out */
-            padding: 4em 1em;
-            font-size: 1.5em;
-        }
-
-        .section {
-            padding: 2em 1em;
-            text-align: center;
-        }
-
-        .services h2, .gallery h2 {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-
-        .services-content, .gallery-content {
-            display: flex;
-            justify-content: center;
-            gap: 1em;
-            flex-wrap: wrap;
-        }
-
-        .service-item, .gallery-item {
-            flex: 1 1 200px;
-            max-width: 300px;
-            padding: 1em;
-            background-color: #f0f4c3;
-            border-radius: 8px;
-            margin: 1em;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1em;
-            background-color: #c5cae9;
-            font-size: 0.9em;
-        }
-    </style>
+	<title>Loan Calculator</title>
+	<style>
+		body {
+			background-color: yellow;
+			font-family: 'Trebuchet MS';
+		}
+		
+		h1 {
+			font-size: 35px;
+			margin-bottom: 20px;
+		}
+		
+		.calculator {
+			width: 400px;
+			height: 450px;
+			background-color: black;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			padding: 20px;
+			border-radius: 50px;
+			color: white;
+			text-align: center;
+		}
+		
+		input {
+			padding: 7px;
+			width: 70%;
+			margin-top: 10px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+			border: none;
+		}
+		
+		h2 {
+			margin-top: 20px;
+			font-size: 20px;
+			color: lightgreen;
+		}
+	</style>
 </head>
+
 <body>
+	<div class="calculator">
+		<h1>Loan Calculator</h1>
+		<p>Amount (₹):</p>
+		<input id="amount" type="number" onchange="Calculate()" placeholder="Enter loan amount">
 
-<!-- Header -->
-<header>
-    <h1>NSV Beach Resort</h1>
-    <p>Your dream vacation awaits!</p>
-</header>
+		<p>Interest Rate (%):</p>
+		<input id="rate" type="number" onchange="Calculate()" placeholder="Enter annual interest rate">
 
-<!-- Navigation Bar -->
-<nav>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+		<p>Months to Pay:</p>
+		<input id="months" type="number" onchange="Calculate()" placeholder="Enter loan tenure (in months)">
 
-<!-- Banner -->
-<section class="banner" id="home">
-    <div>Welcome to NSV</div>
-</section>
+		<h2 id="total">EMI: ₹0.00</h2>
+	</div>
 
-<!-- Services Section -->
-<section class="section services" id="services">
-    <h2>Our Services</h2>
-    <div class="services-content">
-        <div class="service-item">
-            <h3>Luxury Suites</h3>
-            <p>Enjoy beachfront views from our luxurious suites.</p>
-        </div>
-        <div class="service-item">
-            <h3>Spa & Wellness</h3>
-            <p>Relax and rejuvenate with our world-class spa facilities.</p>
-        </div>
-        <div class="service-item">
-            <h3>Adventure Activities</h3>
-            <p>Dive into adventure with our snorkeling, surfing, and more.</p>
-        </div>
-    </div>
-</section>
+	<script>
+		function Calculate() {
+			// Extract values from input fields
+			const amount = parseFloat(document.querySelector("#amount").value);
+			const rate = parseFloat(document.querySelector("#rate").value);
+			const months = parseInt(document.querySelector("#months").value);
 
-<!-- Gallery Section -->
-<section class="section gallery" id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery-content">
-        <div class="gallery-item">
-            <img src="./room-3.jpeg" alt="Beach">
-            <p>Beach view from our Luxury Suite, perfect for sunset watching.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="./room-1.jpeg" alt="Spa">
-            <p>Indulge in our spa facilities with breathtaking views.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="./room-2.jpeg" alt="Suite">
-            <p>Our luxurious suite, equipped with modern amenities.</p>
-        </div>
-    </div>
-</section>
+			// Check if inputs are valid
+			if (isNaN(amount) || isNaN(rate) || isNaN(months) || amount <= 0 || rate <= 0 || months <= 0) {
+				document.querySelector("#total").innerHTML = "EMI: ₹0.00";
+				return;
+			}
 
-<!-- Contact Section -->
-<section class="section contact" id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: info@nsvbeachresort.com</p>
-    <p>Phone: +1 (555) 123-4567</p>
-</section>
+			// Calculate monthly interest rate
+			const interest = (amount * (rate * 0.01)) / months;
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 NSV Beach Resort. All rights reserved.</p>
-</footer>
+			// Calculate total EMI per month
+			const total = ((amount / months) + interest).toFixed(2);
 
+			// Update the result in the output section
+			document.querySelector("#total").innerHTML = `EMI: ₹${total}`;
+		}
+	</script>
 </body>
+
 </html>
